@@ -1,6 +1,8 @@
 [package]
 name = "tinymqtt"
-description = "A very tiny MQTT client, mainly for embedded systems"
+description = "A very tiny no-std MQTT client, mainly for embedded systems"
+keywords = ["mqtt", "embedded", "iot", "no-std"]
+categories = ["network-programming", "embedded", "no-std"]
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
