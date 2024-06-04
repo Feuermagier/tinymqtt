@@ -1,3 +1,5 @@
+#![no_std]
+
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::FromPrimitive;
 
@@ -156,7 +158,6 @@ impl<const N: usize> MqttClient<N> {
                     return Err(MqttError::Disconnected);
                 }
                 _ => {
-                    dbg!(ty);
                     return Err(MqttError::InvalidPacket);
                 }
             }

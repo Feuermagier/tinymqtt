@@ -16,21 +16,26 @@ fn main() {
 
     let mut rx_bytes = [0; 1024];
     let len = stream.read(&mut rx_bytes).unwrap();
-    client.receive_packet(&rx_bytes[..len], |client, topic, data| {
-        println!("Received: {:?} {:?}", topic, std::str::from_utf8(data));
-    }).unwrap();
+    client
+        .receive_packet(&rx_bytes[..len], |client, topic, data| {
+            println!("Received: {:?} {:?}", topic, std::str::from_utf8(data));
+        })
+        .unwrap();
 
     stream
         .write_all(client.publish("gots/test", b"test").unwrap())
         .unwrap();
 
-    stream.write_all(client.subscribe("zigbee2mqtt/Power Plug 3").unwrap()).unwrap();
+    stream
+        .write_all(client.subscribe("zigbee2mqtt/Power Plug 3").unwrap())
+        .unwrap();
 
     loop {
         let len = stream.read(&mut rx_bytes).unwrap();
-        client.receive_packet(&rx_bytes[..len], |client, topic, data| {
-            println!("Received: {:?} {:?}", topic, std::str::from_utf8(data));
-        }).unwrap();
+        client
+            .receive_packet(&rx_bytes[..len], |client, topic, data| {
+                println!("Received: {:?} {:?}", topic, std::str::from_utf8(data));
+            })
+            .unwrap();
     }
-    
 }

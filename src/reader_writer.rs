@@ -1,6 +1,5 @@
 use super::flags::Flags;
 
-
 pub struct MqttMessageWriter<'a> {
     buffer: &'a mut [u8],
     cursor: usize,
@@ -76,7 +75,11 @@ pub struct MqttMessageReader<'a> {
 
 impl<'a> MqttMessageReader<'a> {
     pub fn new(buffer: &'a [u8]) -> Self {
-        Self { buffer, cursor: 0, mark: 0 }
+        Self {
+            buffer,
+            cursor: 0,
+            mark: 0,
+        }
     }
 
     pub fn read_u8(&mut self) -> u8 {

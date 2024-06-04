@@ -1,7 +1,6 @@
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Flags {
-    pub value: u8
+    pub value: u8,
 }
 
 impl Flags {
