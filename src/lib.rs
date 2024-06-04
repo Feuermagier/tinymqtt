@@ -124,7 +124,7 @@ impl<const N: usize> MqttClient<N> {
         while reader.remaining() > 0 {
             // Parse fixed header
             let fixed_header = reader.read_u8();
-            let ty = ControlPacketType::from_u8(fixed_header >> 4).unwrap();
+            let ty = ControlPacketType::from_u8(fixed_header >> 4).ok_or(MqttError::InvalidPacket)?;
             let _fixed_header_flags = Flags::new(fixed_header & 0x0F);
             let remaining_length = reader.read_variable_int() as usize;
             reader.mark(); // Remember start of packet content so we can skip it later
